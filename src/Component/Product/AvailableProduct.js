@@ -27,10 +27,10 @@ import ProductItem from './ProductItem'
         }
         ]
 
-       const AvailableProduct=()=>{
+       const AvailableProduct=(props)=>{
      
   const products = productsArr.map((item) => (
-    <ProductItem
+    <ProductItem 
       key={item.id}
       id={item.id}
       title={item.title}

@@ -1,9 +1,9 @@
 footer {
-    display: flex;
-    margin-top: 40px;
-    padding: 20px;
-    background: skyblue;
-  }
+  display: flex;
+  margin-top: 40px;
+  padding: 20px;
+  background: skyblue;
+}
 .footer-title {
     text-align: center;
     color: white;
