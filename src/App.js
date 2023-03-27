@@ -6,6 +6,7 @@ import Cart from './Component/Cart/Cart';
 import CartProvider from './Component/Store/CartProvider';
 import { Routes, Route } from 'react-router-dom';
 import About from './Component/Pages/About';
+import Home from './Component/Pages/Home'
 
 
 
@@ -28,7 +29,10 @@ function App() {
       
 
     <Header onClick={cartOpenHandler}/>
-    <Routes><Route path= "/About" element= {<About/>}>
+    <Routes>
+    <Route path= "/Home" element= {<Home/>}>
+        </Route>
+      <Route path= "/About" element= {<About/>}>
         </Route>
         <Route path= "/Store" element= {<AvailableProduct />}>
         </Route>
