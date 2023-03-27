@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { Navbar,Nav,Button } from 'react-bootstrap';
 import classes from './Header.module.css';
 import CartContext from '../Store/CartContext';
+import {NavLink} from 'react-router-dom';
+
+
 
 
 
@@ -18,9 +21,9 @@ return (
         <Navbar bg="dark" variant="dark" className='justify-content-center'>
           
              <Nav>
-               <Nav.Link href="#home">Home</Nav.Link>
-               <Nav.Link href="#store">Store</Nav.Link>
-               <Nav.Link href="#about">About</Nav.Link>
+               <Nav.Link to="/home">Home</Nav.Link>
+               <NavLink to="/store">Store</NavLink>
+               <NavLink to="/About">About</NavLink>
              </Nav>
           <div className={classes['flex-end']}>
              <Button variant="outline-primary" onClick={props.onClick}>Cart <span>{quantity}</span></Button>
