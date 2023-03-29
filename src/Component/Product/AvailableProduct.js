@@ -1,7 +1,8 @@
 import React from 'react';
 
 import classes from './AvailableProduct.module.css';
-import ProductItem from './ProductItem'
+import ProductItem from './ProductItem';
+
 
     const productsArr = [
 

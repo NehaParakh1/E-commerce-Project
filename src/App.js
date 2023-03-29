@@ -4,14 +4,15 @@ import Footer from './Component/Layout/Footer'
 import AvailableProduct from './Component/Product/AvailableProduct';
 import Cart from './Component/Cart/Cart';
 import CartProvider from './Component/Store/CartProvider';
-import { Routes, Route } from 'react-router-dom';
+import {  Route, Switch } from 'react-router-dom';
 import About from './Component/Pages/About';
 import Home from './Component/Pages/Home'
 import ContactUs from './Component/Pages/ContactUs';
+import ProductDetails from "./Component/Pages/ProductDetails";
+import { ProductContextProvider } from "./Component/Store/ProductContext";
 
 
-
-function App() {
+function App(props) {
   
   const [showCart, setShowCart] = useState(false);
 
@@ -39,23 +40,31 @@ function App() {
 
   return(
     <CartProvider>
-      
-
     <Header onClick={cartOpenHandler}/>
-    <Routes>
-    <Route path= "/Home" element= {<Home/>}>
+    <main>
+      <Switch>
+      <ProductContextProvider>
+      <Route path="/" exact> 
+           <Home/>
+          </Route>
+    <Route path= "/Home"> <Home/>
         </Route>
-      <Route path= "/About" element= {<About/>}>
+      <Route path= "/About"> <About/>
         </Route>
-        <Route path= "/Store" element= {<AvailableProduct />}>
+        <Route path="/ContactUS"><ContactUs onAddUser={submitHandler}/>
         </Route>
-        <Route path="/ContactUS" element={<ContactUs onAddUser={submitHandler}/>}></Route>
-        </Routes>
-        
-    
+        <Route path="/store" exact>
+          <AvailableProduct/>
+        </Route>
+        <Route path="/store/:productId">
+          <ProductDetails/>
+        </Route>  
+        </ProductContextProvider>
+        </Switch>
+        </main>
     <Footer/>
     {showCart && <Cart onClose={closeHandler}/>}
-    
+   
    </CartProvider>
   );
 }

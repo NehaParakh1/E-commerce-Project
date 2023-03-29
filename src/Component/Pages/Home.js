@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import classes from "./Home.module.css";
 
 const Home = () => {
@@ -54,6 +55,8 @@ const Home = () => {
 
   return (
     <section className={classes.home}>
+      <Route path='/'>
+      </Route>
       <h2>TOURS</h2>
       <div className={classes.wrapper}>{list}</div>
     </section>
