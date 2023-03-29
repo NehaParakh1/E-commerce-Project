@@ -7,6 +7,7 @@ import CartProvider from './Component/Store/CartProvider';
 import { Routes, Route } from 'react-router-dom';
 import About from './Component/Pages/About';
 import Home from './Component/Pages/Home'
+import ContactUs from './Component/Pages/ContactUs';
 
 
 
@@ -24,6 +25,18 @@ function App() {
     setShowCart(false);
   }
 
+  async function submitHandler (userDetails) {
+    const response = await fetch('https://e-commerce-contact-us-ad042-default-rtdb.asia-southeast1.firebasedatabase.app/userDetails.json', {
+        method: 'POST',
+        body: JSON.stringify(userDetails),
+        headers: {
+            "Content-Type": "application.json",
+          },
+    })
+    const data = await response.json();
+    console.log(data);
+}
+
   return(
     <CartProvider>
       
@@ -36,6 +49,7 @@ function App() {
         </Route>
         <Route path= "/Store" element= {<AvailableProduct />}>
         </Route>
+        <Route path="/ContactUS" element={<ContactUs onAddUser={submitHandler}/>}></Route>
         </Routes>
         
     
