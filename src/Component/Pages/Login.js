@@ -44,7 +44,7 @@ return res.json()
 }).then(data=>{
   loginCtx.login(data.idToken);
 history.replace('/store');
-
+console.log(data.idToken)
 }).catch(err=>{
   alert(err.message);
 })
