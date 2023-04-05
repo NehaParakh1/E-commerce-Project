@@ -8,7 +8,7 @@ import CartContext from '../Store/CartContext';
  const Cart=(props)=>{
     const cartCtx=useContext(CartContext)
 
-    
+    console.log(cartCtx.items)
 
     const cartItemRemoveHandler = (id) => {
       cartCtx.removeItem(id);
@@ -22,21 +22,34 @@ import CartContext from '../Store/CartContext';
       }
     }
  const items = (
-        <ul className='cart-items'>
-          {cartCtx.items.map((item) => (
+ 
+  <Table responsive="sm" >
+  <thead>
+    <tr className="th">
+      <th className="item">ITEM</th>
+      <th className="price">PRICE</th>
+      <th className="quantity">QUANTITY</th>
+    </tr>
+  </thead>
+  <tbody >
+
+         {cartCtx.items.map((item) => (
 
 <CartItem 
-      key={item.id}
+      key={item._id}
+      item={item}
       id={item.id}
       title={item.title}
       price={item.price}
       image={item.image}
       quantity={item.quantity}
-      onRemove={()=>{cartItemRemoveHandler(item.id)}}
+      onRemove={()=>{cartItemRemoveHandler(item._id)}}
     />  
     ))}
-    </ul>
+    </tbody>
+    </Table>
   )
+
     return(
         <Modal onClose={props.onClose}>
         <Container className="cart">
@@ -45,23 +58,16 @@ import CartContext from '../Store/CartContext';
         </Row>
         <Row>
           <Col className="text-center">
-          
-            <Table responsive="sm">
-              <thead>
-                <tr className="th">
-                  <th className="item">ITEM</th>
-                  <th className="price">PRICE</th>
-                  <th className="quantity">QUANTITY</th>
-                </tr>
-              </thead>
-              <tbody>{items}</tbody>
-            </Table>
+            <div className="cart-items">
+          {items} 
+          </div>
             <div>
         
               <span>Total Price</span> <span>${cartCtx.totalAmount}</span>
             </div>
             <div>
-              <Button onClick={purchaseHandler}>PURCHASE</Button>
+              <Button className='purchase-button' onClick={purchaseHandler}>PURCHASE</Button>
+            
               <Button onClick={props.onClose}>CLOSE</Button>
             </div>
           </Col>
