@@ -10,9 +10,6 @@ import CartContext from '../Store/CartContext';
 
     console.log(cartCtx.items)
 
-    const cartItemRemoveHandler = (id) => {
-      cartCtx.removeItem(id);
-    };
     const purchaseHandler=()=>{
       if(cartCtx.items.length>0){
         alert('Thanks for purchase!')
@@ -43,7 +40,7 @@ import CartContext from '../Store/CartContext';
       price={item.price}
       image={item.image}
       quantity={item.quantity}
-      onRemove={()=>{cartItemRemoveHandler(item._id)}}
+      
     />  
     ))}
     </tbody>
