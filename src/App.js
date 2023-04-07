@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,lazy, Suspense } from 'react';
 import Header from './Component/Layout/Header'
 import Footer from './Component/Layout/Footer'
 import AvailableProduct from './Component/Product/AvailableProduct';
@@ -8,12 +8,14 @@ import {  Route, Switch, Redirect } from 'react-router-dom';
 import About from './Component/Pages/About';
 import Home from './Component/Pages/Home'
 import ContactUs from './Component/Pages/ContactUs';
-import ProductDetails from "./Component/Pages/ProductDetails";
+//import ProductDetails from "./Component/Pages/ProductDetails";
 import { ProductContextProvider } from "./Component/Store/ProductContext";
 import Login from './Component/Pages/Login'
 import AuthContext, { AuthContextProvider } from './Component/Store/AuthContext'
 
 function App(props) {
+
+  const ProductDetails=lazy(()=> import ('./Component/Pages/ProductDetails'))
   const loginCtx=useContext(AuthContext)
   const [showCart, setShowCart] = useState(false);
 
@@ -58,7 +60,8 @@ function App(props) {
         <Route path="/ContactUS"><ContactUs onAddUser={submitHandler}/>
         </Route>
         <Route path="/store" exact>
-          <AvailableProduct/>
+          {/* <AvailableProduct/> */}
+          <Suspense><AvailableProduct/> </Suspense>
         </Route>
        {loginCtx.isLoggedIn && <AvailableProduct/> }
         {!loginCtx.isLoggedIn && <Redirect to='/login' />}
