@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import Header from './Component/Layout/Header'
 import Footer from './Component/Layout/Footer'
 import AvailableProduct from './Component/Product/AvailableProduct';
 import Cart from './Component/Cart/Cart';
 import CartProvider from './Component/Store/CartProvider';
-import {  Route, Switch } from 'react-router-dom';
+import {  Route, Switch, Redirect } from 'react-router-dom';
 import About from './Component/Pages/About';
 import Home from './Component/Pages/Home'
 import ContactUs from './Component/Pages/ContactUs';
 import ProductDetails from "./Component/Pages/ProductDetails";
 import { ProductContextProvider } from "./Component/Store/ProductContext";
-
+import Login from './Component/Pages/Login'
+import AuthContext from './Component/Store/AuthContext'
 
 function App(props) {
-  
+  const loginCtx=useContext(AuthContext)
   const [showCart, setShowCart] = useState(false);
 
   const cartOpenHandler = (event) => {
@@ -51,11 +52,15 @@ function App(props) {
         </Route>
       <Route path= "/About"> <About/>
         </Route>
+        <Route path="/Login"><Login/>
+        </Route>
         <Route path="/ContactUS"><ContactUs onAddUser={submitHandler}/>
         </Route>
         <Route path="/store" exact>
           <AvailableProduct/>
         </Route>
+        {loginCtx.isLoggedIn && <AvailableProduct/> }
+        {!loginCtx.isLoggedIn && <Redirect to='/login' />}
         <Route path="/store/:productId">
           <ProductDetails/>
         </Route>  
