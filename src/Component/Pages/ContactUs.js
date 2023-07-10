@@ -22,7 +22,7 @@ phoneNoRef.current.value=""
 }
 
 return(
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} >
     <div className={classes.control}>
       <label htmlFor="name">Name</label>
       <input type="text" id="name" ref={nameRef} />
@@ -35,7 +35,7 @@ return(
       <label htmlFor="phone">Phone Number</label>
       <input type="number" id="phone" ref={phoneNoRef} />
     </div>
-    <button>Submit</button>
+    <button className={classes.button}>Submit</button>
   </form>
 );
 }

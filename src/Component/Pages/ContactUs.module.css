@@ -27,3 +27,19 @@
     outline: none;
     border-color: #230052;
   }
+
+  .button{
+    
+    
+      background:#230052;
+      color: white;
+      border: none;
+      margin-left: 12%;
+      padding: 7px;
+      border-radius: 5px;
+      position: relative;
+      font-weight: 700;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+   
+  }
+

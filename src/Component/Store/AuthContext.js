@@ -17,11 +17,14 @@ export const AuthContextProvider = (props) => {
         setToken(token);
         localStorage.setItem('token', token)
         console.log(token)
+        
+
     }
     const logoutHandler = () => {
         setToken(null);
         localStorage.removeItem('token')
         console.log(token)
+    
     }
 
     const contextValue = ({
@@ -35,4 +38,4 @@ export const AuthContextProvider = (props) => {
         {props.children}
     </AuthContext.Provider>)
 }
-export default AuthContext
+export default AuthContext;

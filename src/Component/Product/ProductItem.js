@@ -28,8 +28,8 @@ const ProductItem=(props)=>{
     return (
       
         <Card className={classes.card}>
-          <Card.Img variant="top" src={props.image} alt={props.title} />
-          <Link to="/store/:productId" onClick={ProductDetailHandler.bind(null, props)}><h5>Details</h5></Link>
+          <Link to="/store/:productId" ><Card.Img variant="top" src={props.image} alt={props.title} onClick={ProductDetailHandler.bind(null, props)}/>
+          </Link>
           <Card.Body>
             <Card.Title>{props.title}</Card.Title>
             <Card.Subtitle>

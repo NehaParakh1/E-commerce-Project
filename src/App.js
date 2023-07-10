@@ -11,7 +11,7 @@ import ContactUs from './Component/Pages/ContactUs';
 import ProductDetails from "./Component/Pages/ProductDetails";
 import { ProductContextProvider } from "./Component/Store/ProductContext";
 import Login from './Component/Pages/Login'
-import AuthContext from './Component/Store/AuthContext'
+import AuthContext, { AuthContextProvider } from './Component/Store/AuthContext'
 
 function App(props) {
   const loginCtx=useContext(AuthContext)
@@ -40,6 +40,7 @@ function App(props) {
 }
 
   return(
+    <AuthContextProvider>
     <CartProvider>
     <Header onClick={cartOpenHandler}/>
     <main>
@@ -71,6 +72,7 @@ function App(props) {
     {showCart && <Cart onClose={closeHandler}/>}
    
    </CartProvider>
+   </AuthContextProvider>
   );
 }
 
