@@ -3,3 +3,13 @@
     font-size: 25px;
   }
 
+  .cart-items{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: 500px;
+    max-height: 40vh;
+  }
+
+  .purchase-button{
+    margin: 9px;
+  }

@@ -4,35 +4,85 @@
     float:right;
 }
 
-.nav{
+.nav1{
 
         background-color: #333;
+        color: #f2f2f2;
         overflow: hidden;
         padding: 14px 16px;
-        margin: 5px
+        margin: 5px;
       
 }   
-      /* Style the links inside the navigation bar */
-      .nav Navlink {
-        float: left;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-      }
-      
-      /* Change the color of links on hover */
-      .nav Navlink:hover {
-        background-color: #ddd;
-        color: black;
-      }
-      
-      /* Add a color to the active/current link */
-      .nav navlink.active {
-        background-color: #04AA6D;
-        color: white;
-      }
+
+.nav2{
+
+  background-color: #333;
+  color: #f2f2f2;
+  overflow: hidden;
+  padding: 12px 14px;
+  margin: 5px;
+
+}  
+
+.nav3{
+
+  background-color: #333;
+  color: #f2f2f2;
+  overflow: hidden;
+  padding: 12px 14px;
+  margin: 5px;
+
+}   
+.nav4{
+
+  background-color: #333;
+  color: #f2f2f2;
+  overflow: hidden;
+  padding: 12px 14px;
+  margin: 5px;
+
+}   
+
+.nav5{
+
+  background-color: #333;
+  color: #f2f2f2;
+  overflow: hidden;
+  padding: 12px 14px;
+  margin: 5px;
+}   
+
+.logout{
+  margin:9px;
+  
+
+}
+
+.header-banner {
+  background-color: grey;
+  text-align: center;
+  height: 25vh;
+}
+
+.header-title {
+  font-size: 3rem;
+  color: white;
+  font-family: serif;
+  font-weight: bold;
+}
+
+@media (max-width: 576px) {
+  .header-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 2.5rem;
+  }
+}
+
 
 
 
