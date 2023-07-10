@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const ProductContext = React.createContext({
   title: "",
-  imageUrl: "",
+  image: "",
   rating: 0,
   price: 0,
   detail: "",
@@ -12,7 +12,7 @@ const ProductContext = React.createContext({
 export const ProductContextProvider = (props) => {
   const [product, setProduct] = useState({
     title: "",
-    imageUrl: "",
+    image: "",
     rating: 0,
     price: 0,
     detail: "",
@@ -22,7 +22,7 @@ export const ProductContextProvider = (props) => {
     console.log("calledContext");
     setProduct({
       title: item.title,
-      imageUrl: item.imageUrl,
+      image: item.image,
       rating: item.rating,
       detail: item.detail,
       price: item.price,
@@ -32,7 +32,7 @@ export const ProductContextProvider = (props) => {
     <ProductContext.Provider
       value={{
         title: product.title,
-        imageUrl: product.imageUrl,
+        image: product.image,
         rating: product.rating,
         detail: product.detail,
         price: product.price,

@@ -6,7 +6,7 @@ const CartProvider = (props) => {
   const initialUserEmail = localStorage.getItem('userEmail');
   const [items, setItems] = useState([]);
   const [userEmail, setUserEmail] = useState(initialUserEmail);
-
+const url= "https://crudcrud.com/api/f93922caeb634aba9570f2a49b133fb3"
   const userEmailHandler = (email) => {
     const newUserEmail = email.replace('@', '').replace('.', '');
     setUserEmail(newUserEmail);
@@ -25,7 +25,7 @@ const CartProvider = (props) => {
       setItems(itemsCopy);
     }
 
-    axios.post(`https://crudcrud.com/api/f4e65196b84046e59a306daa4d895e79/cart${userEmail}`, item)
+    axios.post(`${url}/cart${userEmail}`, item)
       .then((res) => {
         console.log(res.data);
 
@@ -61,7 +61,9 @@ const CartProvider = (props) => {
     
     setItems(itemsCopy);
 
-    axios.put(`https://crudcrud.com/api/f4e65196b84046e59a306daa4d895e79/cart${userEmail}/${item._id}`, item)
+  
+
+    axios.put(`${url}/cart${userEmail}/${item._id}`, item)
       .then((res) => {
         console.log(res.data);
       })
@@ -84,7 +86,7 @@ const CartProvider = (props) => {
       
       setItems(itemsCopy);
     }
-    axios.delete(`https://crudcrud.com/api/f4e65196b84046e59a306daa4d895e79/cart${userEmail}/${item._id}`,item)
+    axios.delete(`${url}/cart${userEmail}/${item._id}`,item)
     .then((res) => {
       console.log(res.data);
     })
@@ -100,7 +102,7 @@ const CartProvider = (props) => {
        console.log(totalPrice)
 
        useEffect(()=>{
-        axios.get(`https://crudcrud.com/api/f4e65196b84046e59a306daa4d895e79/cart${userEmail}`
+        axios.get(`${url}/cart${userEmail}`
         ).then((res)=>{
             setItems(res.data)
             console.log(res.data)
