@@ -24,6 +24,7 @@ export const AuthContextProvider = (props) => {
         setToken(null);
         localStorage.removeItem('token')
         console.log(token)
+        localStorage.removeItem('userEmail')
     
     }
 

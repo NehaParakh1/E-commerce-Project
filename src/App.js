@@ -60,7 +60,7 @@ function App(props) {
         <Route path="/store" exact>
           <AvailableProduct/>
         </Route>
-        {loginCtx.isLoggedIn && <AvailableProduct/> }
+       {loginCtx.isLoggedIn && <AvailableProduct/> }
         {!loginCtx.isLoggedIn && <Redirect to='/login' />}
         <Route path="/store/:productId">
           <ProductDetails/>

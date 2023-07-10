@@ -10,9 +10,6 @@ const CartItem=(props)=>{
     return(
         <tr className="items">
         <td className="image-title">
-          <span id="img">
-            <img src={props.image} alt={props.title} />
-          </span>
           <span className="title">{props.title}</span>
         </td>
         <td className="tdprice">
@@ -24,8 +21,9 @@ const CartItem=(props)=>{
               <input type="number" value={props.quantity} />
             </span>
             <span className="rem">
-              <button onClick={() => cartCtx.quantityplus(props)}style = {{backgroundColor:'green'}}>+</button>
-      <button onClick={() => cartCtx.quantityminus(props)} style = {{backgroundColor:'red'}}>-</button>
+              <button onClick={() => cartCtx.quantityplus(props.item)}style = {{backgroundColor:'green'}}>+</button>
+      <button onClick={() => cartCtx.quantityminus(props.item)} style = {{backgroundColor:'red'}}>-</button>
+      
             </span>
           </div>
         </td>

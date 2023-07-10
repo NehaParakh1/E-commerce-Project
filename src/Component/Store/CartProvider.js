@@ -1,61 +1,120 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import CartContext from './CartContext';
+import axios from "axios";
 
-const CartProvider=(props)=>{
-    const [items, setitems] = useState([])
+const CartProvider = (props) => {
+  const initialUserEmail = localStorage.getItem('userEmail');
+  const [items, setItems] = useState([]);
+  const [userEmail, setUserEmail] = useState(initialUserEmail);
 
-    const addItemToCartHandler=(item)=>{
-        //updateItems([...items,item]);
-        const itemsCopy = [...items];
-        const idx = itemsCopy.findIndex((i) => i.id === item.id);
- 
-        if (idx === -1) {
-            setitems([...items, item]);
-        } else {
-            itemsCopy[idx].quantity=Number(itemsCopy[idx].quantity)+Number(item.quantity);
-            itemsCopy[idx].totalPrice=Number(itemsCopy[idx].totalPrice)*Number(itemsCopy[idx].quantity)
-            setitems(itemsCopy)
-        }
-        console.log(item)
+  const userEmailHandler = (email) => {
+    const newUserEmail = email.replace('@', '').replace('.', '');
+    setUserEmail(newUserEmail);
+    localStorage.setItem('userEmail', newUserEmail);
+  }
+
+  const addItemToCartHandler = (item) => {
+    const itemsCopy = [...items];
+    const idx = itemsCopy.findIndex((i) => i.id === item.id);
+
+    if (idx === -1) {
+      setItems([...items, item]);
+    } else {
+      itemsCopy[idx].quantity = Number(itemsCopy[idx].quantity) + Number(item.quantity);
+      itemsCopy[idx].totalPrice = Number(itemsCopy[idx].totalPrice) * Number(itemsCopy[idx].quantity);
+      setItems(itemsCopy);
     }
- 
-     
- 
-     const removeItemFromCartHandler=(id)=>{}
-     
-     const incrementHandler = (item) => {
-         const itemsCopy = [...items];
-         const idx = itemsCopy.findIndex((i) => i.id === item.id);
-         itemsCopy[idx].quantity++;
-         setitems(itemsCopy);
-       };
-     
-       const decrementHandler = (item) => {
-         const itemsCopy = [...items];
-         const idx = itemsCopy.findIndex((i) => i.id === item.id);
-     
-         if (idx !== -1 && itemsCopy[idx].quantity < 2 ) {
-           itemsCopy.splice(idx, 1);
-           setitems(itemsCopy);
-         } else {
-           itemsCopy[idx].quantity--;
-           setitems(itemsCopy);
-         }
-       };
-     
+
+    axios.post(`https://crudcrud.com/api/f4e65196b84046e59a306daa4d895e79/cart${userEmail}`, item)
+      .then((res) => {
+        console.log(res.data);
+
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  // const removeItemFromCartHandler = (id) => {
+  //   const itemsCopy = [...items];
+  //   const idx = itemsCopy.findIndex((i) => i.id === id);
+
+  //   if (idx !== -1) {
+  //     itemsCopy.splice(idx, 1);
+  //     setItems(itemsCopy);
+  //   }
+  //   console.log(id, userEmail)
+
+  //   axios.delete(`https://crudcrud.com/api/4cff2bcfb6c74ceb894ca54c1a8f1018/cart${userEmail}/${id}`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }
+
+  const incrementHandler = (item) => {
+    const itemsCopy = [...items];
+    const idx = itemsCopy.findIndex((i) => i._id === item._id);
+    itemsCopy[idx].quantity++;
+    
+    setItems(itemsCopy);
+
+    axios.put(`https://crudcrud.com/api/f4e65196b84046e59a306daa4d895e79/cart${userEmail}/${item._id}`, item)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const decrementHandler = (item) => {
+    const itemsCopy = [...items];
+    const idx = itemsCopy.findIndex((i) => i._id === item._id);
+
+    if (idx !== -1 && itemsCopy[idx].quantity < 2) {
+      itemsCopy.splice(idx, 1);
+      setItems(itemsCopy);
+
+    
+    } else {
+      itemsCopy[idx].quantity--;
+      
+      setItems(itemsCopy);
+    }
+    axios.delete(`https://crudcrud.com/api/f4e65196b84046e59a306daa4d895e79/cart${userEmail}/${item._id}`,item)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }
+       
        let totalPrice=0;
        items.forEach((item)=>{
            totalPrice=totalPrice+Number(item.price*item.quantity)
        })
        console.log(totalPrice)
- 
+
+       useEffect(()=>{
+        axios.get(`https://crudcrud.com/api/f4e65196b84046e59a306daa4d895e79/cart${userEmail}`
+        ).then((res)=>{
+            setItems(res.data)
+            console.log(res.data)
+        })
+      },[userEmail])
+      
      const cartContext={
          items:items,
          totalAmount:totalPrice,
          addItem: addItemToCartHandler,
-         removeItem:removeItemFromCartHandler,
+        //  removeItem:removeItemFromCartHandler,
          quantityplus: incrementHandler,
-         quantityminus: decrementHandler
+         quantityminus: decrementHandler,
+         userIdentifier:userEmailHandler
      }
  
      return(
