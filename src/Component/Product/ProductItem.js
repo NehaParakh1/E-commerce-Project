@@ -2,20 +2,34 @@ import React, { useContext } from 'react';
 import {Card,Button} from 'react-bootstrap';
 import classes from './ProductItem.module.css'
 import CartContext from '../Store/CartContext'
-
+import { Link } from 'react-router-dom';
+import ProductContext from '../Store/ProductContext';
 
 const ProductItem=(props)=>{
   const cartCtx=useContext(CartContext)
+  const productCtx = useContext(ProductContext);
+  console.log(productCtx)
 
   const addItemToCartHandler=(event)=>{
     event.preventDefault();
     cartCtx.addItem({ id: props.id, imageUrl: props.imageUrl, title: props.title, price: props.price, quantity: 1});
+  }
+  const ProductDetailHandler = (item) => {
+    const ProductDetail = {
+      title: item.title,
+      imageUrl: item.image,
+      price: item.price,
+      rating: 4.5,
+      detail: 'Best album of the year',
+    }
+    productCtx.changeDetail(ProductDetail)
   }
 
     return (
       
         <Card className={classes.card}>
           <Card.Img variant="top" src={props.image} alt={props.title} />
+          <Link to="/store/:productId" onClick={ProductDetailHandler.bind(null, props)}><h5>Details</h5></Link>
           <Card.Body>
             <Card.Title>{props.title}</Card.Title>
             <Card.Subtitle>
