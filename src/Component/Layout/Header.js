@@ -21,7 +21,7 @@ return (
         <Navbar bg="dark" variant="dark" className='justify-content-center'>
           
              <Nav>
-               <Nav.Link to="/home">Home</Nav.Link>
+               <NavLink to="/home">Home</NavLink>
                <NavLink to="/store">Store</NavLink>
                <NavLink to="/About">About</NavLink>
              </Nav>
