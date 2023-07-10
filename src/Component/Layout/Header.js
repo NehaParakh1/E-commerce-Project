@@ -20,10 +20,11 @@ return (
     <>
         <Navbar bg="dark" variant="dark" className='justify-content-center'>
           
-             <Nav>
+             <Nav className={classes.nav}>
                <NavLink to="/home">Home</NavLink>
                <NavLink to="/store">Store</NavLink>
                <NavLink to="/About">About</NavLink>
+               <NavLink to='/ContactUs'>Contact Us</NavLink>
              </Nav>
           <div className={classes['flex-end']}>
              <Button variant="outline-primary" onClick={props.onClick}>Cart <span>{quantity}</span></Button>
