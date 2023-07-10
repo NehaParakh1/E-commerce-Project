@@ -1,3 +1,4 @@
+
 .image-title {
     display: flex;
     align-items: center;
@@ -16,14 +17,10 @@
     justify-content: center;
     padding: 1rem;
   }
-  #img {
-    width: 40px;
-  }
-  #img img {
-    width: 40px;
-  }
+
   .tdprice {
     padding: 1rem;
+   
   }
   .priceValue {
     display: flex;

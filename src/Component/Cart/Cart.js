@@ -1,31 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CartItem from './CartItem'
 import {Container,Row,Col,Table,Button} from 'react-bootstrap'
 import './Cart.css'
+import Modal from '../UI/Modal';
+import CartContext from '../Store/CartContext';
+     
+ const Cart=(props)=>{
+    const cartCtx=useContext(CartContext)
 
-    const cartElements = [
-        {
-        title: 'Colors',
-        price: 100,
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-        quantity: 2,
-        },
-        {
-        title: 'Black and white Colors',
-        price: 50,
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-        quantity: 3,
-        },
-        {
-        title: 'Yellow and Black Colors',
-        price: 70,
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-        quantity: 1,
-        }
-        ]   
-        const Cart=(props)=>{
+    
 
-const cartElem=cartElements.map((item)=>(
+    const cartItemRemoveHandler = (id) => {
+      cartCtx.removeItem(id);
+    };
+    const purchaseHandler=()=>{
+      if(cartCtx.items.length>0){
+        alert('Thanks for purchase!')
+      }
+      else{
+        alert('You have Nothing in Cart , Add some products to purchase !')
+      }
+    }
+ const items = (
+        <ul className='cart-items'>
+          {cartCtx.items.map((item) => (
+
 <CartItem 
       key={item.id}
       id={item.id}
@@ -33,10 +32,13 @@ const cartElem=cartElements.map((item)=>(
       price={item.price}
       image={item.image}
       quantity={item.quantity}
+      onRemove={()=>{cartItemRemoveHandler(item.id)}}
     />  
-
-))
+    ))}
+    </ul>
+  )
     return(
+        <Modal onClose={props.onClose}>
         <Container className="cart">
         <Row>
           <Col className="text-center cart-text">Cart</Col>
@@ -53,19 +55,20 @@ const cartElem=cartElements.map((item)=>(
                   <th className="quantity">QUANTITY</th>
                 </tr>
               </thead>
-              <tbody>{cartElem}</tbody>
+              <tbody>{items}</tbody>
             </Table>
             <div>
-              {" "}
-              <span>Total</span> <span>$Total Amount</span>{" "}
+        
+              <span>Total Price</span> <span>${cartCtx.totalAmount}</span>
             </div>
             <div>
-              <Button>PURCHASE</Button>
-              <button onClick={props.onClose}>Close</button>
+              <Button onClick={purchaseHandler}>PURCHASE</Button>
+              <Button onClick={props.onClose}>CLOSE</Button>
             </div>
           </Col>
         </Row>
       </Container>
+      </Modal>
     );
   }
   

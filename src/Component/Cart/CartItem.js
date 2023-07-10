@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './CartItem.css'
+import CartContext from '../Store/CartContext';
+
+
 
 const CartItem=(props)=>{
+   const cartCtx = useContext(CartContext);
+
     return(
         <tr className="items">
         <td className="image-title">
@@ -16,14 +21,15 @@ const CartItem=(props)=>{
         <td>
           <div className="quan-rem">
             <span className="quantity">
-              <input type="number" min={1} value={props.quantity} />
+              <input type="number" value={props.quantity} />
             </span>
             <span className="rem">
-              <button >X</button>
+              <button onClick={() => cartCtx.quantityplus(props)}style = {{backgroundColor:'green'}}>+</button>
+      <button onClick={() => cartCtx.quantityminus(props)} style = {{backgroundColor:'red'}}>-</button>
             </span>
           </div>
         </td>
-      </tr>
+      </tr> 
     );
   }
   

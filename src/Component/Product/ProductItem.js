@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Card,Button} from 'react-bootstrap';
 import classes from './ProductItem.module.css'
+import CartContext from '../Store/CartContext'
+
 
 const ProductItem=(props)=>{
+  const cartCtx=useContext(CartContext)
+
+  const addItemToCartHandler=(event)=>{
+    event.preventDefault();
+    cartCtx.addItem({ id: props.id, imageUrl: props.imageUrl, title: props.title, price: props.price, quantity: 1});
+  }
 
     return (
       
@@ -13,7 +21,7 @@ const ProductItem=(props)=>{
             <Card.Subtitle>
               <span>${props.price}</span>
             </Card.Subtitle>
-            <Button className={classes.button}>Add to cart</Button>
+            <Button onClick={addItemToCartHandler}>Add to cart</Button>
           </Card.Body>
         </Card>
        

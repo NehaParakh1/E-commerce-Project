@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navbar,Nav,Button } from 'react-bootstrap';
 import classes from './Header.module.css';
+import CartContext from '../Store/CartContext';
 
 
 
 const Header=(props)=>{
+
+  const cartCtx = useContext(CartContext);
+  let quantity=0;
+  cartCtx.items.forEach(item =>{
+    quantity=quantity+Number(item.quantity)
+ })
+
 return (
     <>
         <Navbar bg="dark" variant="dark" className='justify-content-center'>
@@ -15,7 +23,7 @@ return (
                <Nav.Link href="#about">About</Nav.Link>
              </Nav>
           <div className={classes['flex-end']}>
-             <Button variant="outline-primary" onClick={props.onClick}>Cart <span>{0}</span></Button>
+             <Button variant="outline-primary" onClick={props.onClick}>Cart <span>{quantity}</span></Button>
              </div>
            </Navbar>
            <div style={{
