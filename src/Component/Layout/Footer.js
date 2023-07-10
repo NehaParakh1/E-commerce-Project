@@ -17,7 +17,7 @@ const Footer = () => {
             <li>
               <a href="https://spotify.com">
                 <img
-                  src={"https://cdn-icons-png.flaticon.com/128/49/49097.png"}
+                  src={"https://cdn-icons-png.flaticon.com/512/174/174872.png"}
                   alt="spotify"
                 />
               </a>

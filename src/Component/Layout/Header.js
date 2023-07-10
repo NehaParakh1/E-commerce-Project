@@ -4,7 +4,7 @@ import classes from './Header.module.css';
 
 
 
-const Header=()=>{
+const Header=(props)=>{
 return (
     <>
         <Navbar bg="dark" variant="dark" className='justify-content-center'>
@@ -15,7 +15,7 @@ return (
                <Nav.Link href="#about">About</Nav.Link>
              </Nav>
           <div className={classes['flex-end']}>
-             <Button variant="outline-primary">Cart <span>{0}</span></Button>
+             <Button variant="outline-primary" onClick={props.onClick}>Cart <span>{0}</span></Button>
              </div>
            </Navbar>
            <div style={{
@@ -23,7 +23,10 @@ return (
             textAlign:'center',
             height: '25vh'
            }}>
-   <h1 style={{fontSize:'95px', color: 'white', fontFamily:'serif', fontWeight: 'bold'}}>The Generics</h1>
+   <h1 style={{fontSize:'95px', 
+   color: 'white', 
+   fontFamily:'serif', 
+   fontWeight: 'bold'}}>The Generics</h1>
            </div>
            </>
 )
