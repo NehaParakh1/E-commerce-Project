@@ -12,23 +12,24 @@ const ProductItem=(props)=>{
 
   const addItemToCartHandler=(event)=>{
     event.preventDefault();
-    cartCtx.addItem({ id: props.id, imageUrl: props.imageUrl, title: props.title, price: props.price, quantity: 1});
+    cartCtx.addItem({ id: props.id, image: props.image, title: props.title, price: props.price, quantity: 1});
   }
   const ProductDetailHandler = (item) => {
     const ProductDetail = {
       title: item.title,
-      imageUrl: item.image,
+      image: item.image,
       price: item.price,
       rating: 4.5,
       detail: 'Best album of the year',
     }
     productCtx.changeDetail(ProductDetail)
+    
   }
 
     return (
       
         <Card className={classes.card}>
-          <Link to="/store/:productId" ><Card.Img variant="top" src={props.image} alt={props.title} onClick={ProductDetailHandler.bind(null, props)}/>
+          <Link to={`/store/${props.id}`} ><Card.Img variant="top" src={props.image} alt={props.title} onClick={ProductDetailHandler.bind(null, props)}/>
           </Link>
           <Card.Body>
             <Card.Title>{props.title}</Card.Title>

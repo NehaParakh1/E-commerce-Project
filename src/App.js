@@ -14,6 +14,7 @@ import Login from './Component/Pages/Login'
 import AuthContext, { AuthContextProvider } from './Component/Store/AuthContext'
 
 function App(props) {
+
   const loginCtx=useContext(AuthContext)
   const [showCart, setShowCart] = useState(false);
 
@@ -58,7 +59,8 @@ function App(props) {
         <Route path="/ContactUS"><ContactUs onAddUser={submitHandler}/>
         </Route>
         <Route path="/store" exact>
-          <AvailableProduct/>
+           <AvailableProduct/>
+         
         </Route>
        {loginCtx.isLoggedIn && <AvailableProduct/> }
         {!loginCtx.isLoggedIn && <Redirect to='/login' />}

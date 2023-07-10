@@ -6,7 +6,7 @@ const CartProvider = (props) => {
   const initialUserEmail = localStorage.getItem('userEmail');
   const [items, setItems] = useState([]);
   const [userEmail, setUserEmail] = useState(initialUserEmail);
-const url= "https://crudcrud.com/api/f93922caeb634aba9570f2a49b133fb3"
+const url= "https://crudcrud.com/api/18ae61a2363b441bb6fdff206af12318"
   const userEmailHandler = (email) => {
     const newUserEmail = email.replace('@', '').replace('.', '');
     setUserEmail(newUserEmail);

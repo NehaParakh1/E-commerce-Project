@@ -16,7 +16,9 @@ const loginCtx=useContext(AuthContext)
 
  const logoutHandler = () =>{
   loginCtx.logout()
+  
   history.replace('/login')
+
 }
 
 return (
@@ -24,19 +26,19 @@ return (
         <Navbar bg="dark" variant="dark" className='justify-content-center'>
           
              <Nav className={classes.nav} >
-               <NavLink to="/home">Home</NavLink>
-               <NavLink to="/About">About</NavLink>
-               {!loginCtx.isLoggedIn && <NavLink to ="/Login">Login</NavLink>}
-              {loginCtx.isLoggedIn && <NavLink to="/store">Store</NavLink>}
-               <NavLink to='/ContactUs'>Contact Us</NavLink>
+               <NavLink className={classes.nav1}to="/home">Home</NavLink>
+               <NavLink className={classes.nav2}to="/About">About</NavLink>
+               {!loginCtx.isLoggedIn && <NavLink className={classes.nav3} to ="/Login">Login</NavLink>}
+              {loginCtx.isLoggedIn && <NavLink className={classes.nav4}to="/store">Store</NavLink>}
+               <NavLink className={classes.nav5}to='/ContactUs'>Contact Us</NavLink>
                
                </Nav>
-             <div>
+             <div className={classes.logout}>
              {loginCtx.isLoggedIn &&<Button variant="outline-primary" onClick={logoutHandler}>Logout</Button>}
              </div>
             
           <div className={classes['flex-end']}>
-             <Button variant="outline-primary" style={{float:"right"}} onClick={props.onClick}>Cart <span>{quantity}</span></Button>
+          {loginCtx.isLoggedIn &&<Button variant="outline-primary" onClick={props.onClick}>Cart <span>{quantity}</span></Button>}
              </div>
            </Navbar>
            <div style={{
@@ -44,10 +46,9 @@ return (
             textAlign:'center',
             height: '25vh'
            }}>
-   <h1 style={{fontSize:'95px', 
-   color: 'white', 
-   fontFamily:'serif', 
-   fontWeight: 'bold'}}>The Generics</h1>
+    <div className="header-banner">
+        <h1 className="header-title">The Generics</h1>
+           </div>
            </div>
            </>
 )

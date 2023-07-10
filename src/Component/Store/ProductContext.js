@@ -20,14 +20,15 @@ export const ProductContextProvider = (props) => {
 
   const changeDetailHandler = (item) => {
     console.log("calledContext");
+    
     setProduct({
-      title: item.title,
+     title: item.title,
       image: item.image,
       rating: item.rating,
       detail: item.detail,
       price: item.price,
     });
-  };
+}
   return (
     <ProductContext.Provider
       value={{
